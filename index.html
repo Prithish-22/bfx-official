@@ -19,7 +19,8 @@
     <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
     
     <script>
-        tailwind.config = {
+        window.tailwind = window.tailwind || {};
+        window.tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
@@ -100,9 +101,11 @@
     <!-- EmailJS Integration -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
-        (function(){
-            emailjs.init("6jGYOqDyRWZ8TOBhE");
-        })();
+        window.addEventListener('load', function() {
+            if (typeof emailjs !== 'undefined') {
+                emailjs.init("6jGYOqDyRWZ8TOBhE");
+            }
+        });
     </script>
 </head>
 <body class="text-gray-900 font-sans antialiased relative selection:bg-brand-orange selection:text-white">
@@ -112,11 +115,6 @@
         <i id="toast-icon" class="ph-fill ph-check-circle text-2xl text-green-500"></i>
         <span id="toast-msg" class="font-black text-sm uppercase tracking-widest"></span>
     </div>
-
-    <!-- FLOATING PC ASSISTANT BUTTON -->
-    <button onclick="openModal()" class="fixed bottom-6 right-6 w-14 h-14 bg-bfx-carbon text-white rounded-full flex items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,0.4)] border border-white/20 hover:bg-brand-orange hover:border-brand-orange hover:scale-105 transition-all z-[100]">
-        <i class="ph-fill ph-chat-teardrop-dots text-2xl"></i>
-    </button>
 
     <!-- NAVIGATION -->
     <nav class="bg-white/95 backdrop-blur-md border-b border-white/20 sticky top-0 z-50 transition-all duration-300 shadow-sm" id="main-nav">
@@ -166,10 +164,27 @@
                     <button onclick="showPage('configurator')" class="bg-brand-orange text-white px-8 py-3 rounded-full font-black text-[10px] tracking-widest flex items-center gap-2 hover:bg-black transition-all shadow-xl shadow-brand-orange/30 transform hover:-translate-y-0.5 hidden sm:flex">
                         BUILD PC <i class="ph-bold ph-arrow-right"></i>
                     </button>
+
+                    <!-- MOBILE MENU TOGGLE -->
+                    <button onclick="toggleMobileMenu()" class="md:hidden relative text-gray-900 hover:text-brand-orange transition-colors" title="Menu">
+                        <i id="menu-icon" class="ph-bold ph-list text-3xl"></i>
+                    </button>
                 </div>
             </div>
         </div>
     </nav>
+
+    <!-- MOBILE OVERLAY MENU -->
+    <div id="mobile-menu" class="fixed inset-0 bg-white/95 backdrop-blur-3xl z-[45] transform translate-x-full transition-transform duration-500 flex flex-col justify-center items-center gap-8 md:hidden">
+        <button onclick="showPage('home')" class="text-2xl font-black uppercase tracking-widest text-gray-900 hover:text-brand-orange transition-colors">Home</button>
+        <button onclick="showPage('home', '#prebuilts')" class="text-2xl font-black uppercase tracking-widest text-gray-900 hover:text-brand-orange transition-colors">Pre-Built</button>
+        <button onclick="showPage('orders')" class="text-2xl font-black uppercase tracking-widest text-gray-900 hover:text-brand-orange transition-colors">My Orders</button>
+        <button onclick="showPage('about')" class="text-2xl font-black uppercase tracking-widest text-gray-900 hover:text-brand-orange transition-colors">About Us</button>
+        <button onclick="document.getElementById('faq-section').scrollIntoView({behavior:'smooth'}); toggleMobileMenu();" class="text-2xl font-black uppercase tracking-widest text-gray-900 hover:text-brand-orange transition-colors">FAQ</button>
+        <button onclick="showPage('configurator')" class="bg-brand-orange text-white px-10 py-4 rounded-full font-black text-sm uppercase tracking-widest flex items-center gap-2 shadow-xl mt-4">
+            BUILD PC <i class="ph-bold ph-arrow-right"></i>
+        </button>
+    </div>
 
     <!-- PAGE 1: HOME -->
     <main id="page-home" class="page-transition">
@@ -300,6 +315,68 @@
                 </div>
             </div>
         </section>
+
+        <!-- BFX ADVANTAGE SECTION (Pre-Footer Showcase) -->
+        <section class="py-32 relative overflow-hidden bg-transparent">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="font-display text-5xl lg:text-7xl font-black text-white uppercase tracking-tighter drop-shadow-md mb-4">
+                        The BFX <span class="text-brand-orange">Advantage</span>
+                    </h2>
+                    <p class="text-white/80 font-medium text-lg max-w-2xl mx-auto">
+                        Precision engineering, premium aesthetics, and uncompromised performance. Discover why your next setup should be a Build Factory X system.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
+                    <!-- Image Card 1 -->
+                    <div class="group relative rounded-[3rem] overflow-hidden h-[500px] reveal shadow-2xl border-[6px] border-white/10 bg-black">
+                        <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=800&q=80" alt="Performance" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-125 group-hover:rotate-2 opacity-80">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500"></div>
+                        <div class="absolute inset-0 p-8 flex flex-col justify-end">
+                            <div class="transform translate-y-12 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                                <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-md mb-6 transform group-hover:-translate-y-4 transition-transform duration-500 shadow-xl border border-white/20">
+                                    <i class="ph-fill ph-rocket-launch text-4xl text-brand-orange"></i>
+                                </div>
+                                <h3 class="font-display text-4xl font-black text-white uppercase tracking-tight mb-3 leading-none">Maximum <br>FPS</h3>
+                                <p class="text-white/80 font-medium leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 text-sm">Hand-tuned overclocks and optimized timings designed for raw, unrelenting performance in 4K gaming and heavy VR applications.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Image Card 2 -->
+                    <div class="group relative rounded-[3rem] overflow-hidden h-[500px] reveal shadow-2xl border-[6px] border-white/10 bg-black" style="transition-delay: 150ms;">
+                        <img src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=800&q=80" alt="Aesthetics" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-125 group-hover:-rotate-2 opacity-80">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500"></div>
+                        <div class="absolute inset-0 p-8 flex flex-col justify-end">
+                            <div class="transform translate-y-12 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                                <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-md mb-6 transform group-hover:-translate-y-4 transition-transform duration-500 shadow-xl border border-white/20">
+                                    <i class="ph-fill ph-palette text-4xl text-[#2563eb]"></i>
+                                </div>
+                                <h3 class="font-display text-4xl font-black text-white uppercase tracking-tight mb-3 leading-none">Immaculate <br>Design</h3>
+                                <p class="text-white/80 font-medium leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 text-sm">Flawless cable management, perfectly synced RGB integration, and premium chassis selections. Built to be the centerpiece of any room.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Image Card 3 -->
+                    <div class="group relative rounded-[3rem] overflow-hidden h-[500px] reveal shadow-2xl border-[6px] border-white/10 bg-black" style="transition-delay: 300ms;">
+                        <img src="https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&w=800&q=80" alt="Cooling" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-125 group-hover:rotate-2 opacity-80">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500"></div>
+                        <div class="absolute inset-0 p-8 flex flex-col justify-end">
+                            <div class="transform translate-y-12 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                                <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-md mb-6 transform group-hover:-translate-y-4 transition-transform duration-500 shadow-xl border border-white/20">
+                                    <i class="ph-fill ph-thermometer-cold text-4xl text-[#06b6d4]"></i>
+                                </div>
+                                <h3 class="font-display text-4xl font-black text-white uppercase tracking-tight mb-3 leading-none">Thermal <br>Superiority</h3>
+                                <p class="text-white/80 font-medium leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 text-sm">Arctic-level custom cooling solutions. Strategic airflow mapping and premium thermal compounds for total system longevity and stability.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- PAGE 2: BFX STARTER DETAILS -->
@@ -783,9 +860,71 @@
             <div class="flex flex-col items-center justify-center mb-16 p-10 bg-gray-50 rounded-[3rem] border border-gray-100 text-center">
                 <h3 class="font-display text-4xl font-black text-gray-900 uppercase tracking-tighter mb-4">Ready to Dominate?</h3>
                 <p class="text-gray-500 font-medium mb-8">Start configuring your custom PC with our advanced wizard.</p>
-                <button onclick="showPage('configurator')" class="bg-brand-orange text-white px-10 py-4 rounded-full font-black text-sm uppercase tracking-widest hover:bg-black transition-all shadow-xl shadow-brand-orange/20">
+                <button onclick="showPage('configurator')" class="bg-brand-orange text-white px-10 py-4 rounded-full font-black text-sm uppercase tracking-widest hover:bg-black transition-all shadow-xl shadow-brand-orange/20 mb-8">
                     BUILD PC
                 </button>
+
+                <!-- EMI Partners Section -->
+                <div class="w-full border-t border-gray-200 pt-8 mt-4">
+                    <p class="text-[10px] text-gray-400 uppercase tracking-[0.3em] font-black mb-6">Official EMI Partners</p>
+                    <div class="flex flex-wrap justify-center items-center gap-10 sm:gap-16">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Bajaj_Finserv_Logo.svg/800px-Bajaj_Finserv_Logo.svg.png" alt="Bajaj Finserv" class="h-10 sm:h-14 object-contain opacity-60 hover:opacity-100 transition-all grayscale hover:grayscale-0 cursor-pointer" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="font-black text-2xl tracking-tighter text-[#0054A6] hidden">BAJAJ FINSERV</span>
+                        
+                        <img src="https://www.fibe.in/wp-content/uploads/2023/01/Fibe-Logo.png" alt="Fibe" class="h-10 sm:h-14 object-contain opacity-60 hover:opacity-100 transition-all grayscale hover:grayscale-0 cursor-pointer" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="font-black text-2xl tracking-tighter text-[#E92E63] hidden">Fibe</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ SECTION (Moved here below EMI Partners) -->
+            <div id="faq-section" class="max-w-4xl mx-auto mb-20 pt-4">
+                <div class="text-center mb-12">
+                    <h3 class="font-display text-4xl font-black text-gray-900 uppercase tracking-tighter mb-2">Frequently Asked <span class="text-brand-orange">Questions</span></h3>
+                    <p class="text-gray-500 font-medium">Everything you need to know about Build Factory X.</p>
+                </div>
+                <div class="space-y-3">
+                    <!-- FAQ 1 -->
+                    <div class="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm hover:shadow-md hover:border-brand-orange/30 transition-all text-left cursor-pointer select-none group" onclick="toggleFaq(this)">
+                        <div class="flex justify-between items-center">
+                            <h4 class="text-xs sm:text-sm font-black text-gray-900 uppercase tracking-widest flex items-center gap-3"><i class="ph-fill ph-clock text-brand-orange text-lg sm:text-xl"></i> How long does it take to build and ship?</h4>
+                            <i class="ph-bold ph-caret-down text-gray-400 group-hover:text-brand-orange transition-transform duration-300 faq-icon"></i>
+                        </div>
+                        <div class="faq-content hidden mt-3 ml-[2.25rem]">
+                            <p class="text-gray-500 text-xs sm:text-sm leading-relaxed">Typically, it takes 7-10 business days from the moment your exact components are confirmed and procured. We spend rigorous hours on cable management, BIOS tweaking, and heavy stress testing before dispatching from our Vellore facility.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ 2 -->
+                    <div class="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm hover:shadow-md hover:border-brand-orange/30 transition-all text-left cursor-pointer select-none group" onclick="toggleFaq(this)">
+                        <div class="flex justify-between items-center">
+                            <h4 class="text-xs sm:text-sm font-black text-gray-900 uppercase tracking-widest flex items-center gap-3"><i class="ph-fill ph-credit-card text-brand-orange text-lg sm:text-xl"></i> Do you offer EMI or Financing?</h4>
+                            <i class="ph-bold ph-caret-down text-gray-400 group-hover:text-brand-orange transition-transform duration-300 faq-icon"></i>
+                        </div>
+                        <div class="faq-content hidden mt-3 ml-[2.25rem]">
+                            <p class="text-gray-500 text-xs sm:text-sm leading-relaxed">Yes! We have official partnerships with Bajaj Finserv and Fibe. You can easily convert your high-end custom PC purchase into flexible monthly installments.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ 3 -->
+                    <div class="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm hover:shadow-md hover:border-brand-orange/30 transition-all text-left cursor-pointer select-none group" onclick="toggleFaq(this)">
+                        <div class="flex justify-between items-center">
+                            <h4 class="text-xs sm:text-sm font-black text-gray-900 uppercase tracking-widest flex items-center gap-3"><i class="ph-fill ph-shield-check text-brand-orange text-lg sm:text-xl"></i> How does the warranty work?</h4>
+                            <i class="ph-bold ph-caret-down text-gray-400 group-hover:text-brand-orange transition-transform duration-300 faq-icon"></i>
+                        </div>
+                        <div class="faq-content hidden mt-3 ml-[2.25rem]">
+                            <p class="text-gray-500 text-xs sm:text-sm leading-relaxed">Every BFX system comes with 3 months of direct on-site support and lifetime technical assistance. Beyond the first 3 months, individual component warranties (ranging from 3 to 10 years) are covered directly by their respective manufacturers.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ 4 -->
+                    <div class="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm hover:shadow-md hover:border-brand-orange/30 transition-all text-left cursor-pointer select-none group" onclick="toggleFaq(this)">
+                        <div class="flex justify-between items-center">
+                            <h4 class="text-xs sm:text-sm font-black text-gray-900 uppercase tracking-widest flex items-center gap-3"><i class="ph-fill ph-plug text-brand-orange text-lg sm:text-xl"></i> Are the systems plug-and-play?</h4>
+                            <i class="ph-bold ph-caret-down text-gray-400 group-hover:text-brand-orange transition-transform duration-300 faq-icon"></i>
+                        </div>
+                        <div class="faq-content hidden mt-3 ml-[2.25rem]">
+                            <p class="text-gray-500 text-xs sm:text-sm leading-relaxed">Yes. We install the OS, update all drivers, flash the latest stable BIOS, set XMP/EXPO profiles, and pre-install requested software. All you have to do is plug it into the wall and start dominating.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-12 mb-20">
@@ -810,30 +949,38 @@
                     <ul class="space-y-6 text-xs font-bold uppercase tracking-widest text-gray-800">
                         <li><button onclick="showPage('terms')" class="hover:text-brand-orange transition-colors uppercase">Terms of Service</button></li>
                         <li><button onclick="showPage('refund')" class="hover:text-brand-orange transition-colors uppercase">Refund Policy</button></li>
+                        <li><button onclick="document.getElementById('faq-section').scrollIntoView({behavior:'smooth'})" class="hover:text-brand-orange transition-colors uppercase">FAQ</button></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-display font-black text-xl text-bfx-carbon uppercase mb-6 tracking-tighter">Reach to us</h4>
                     <div class="grid grid-cols-1 gap-4">
-                        <div class="reach-card">
-                            <div class="w-10 h-10 bg-orange-50 rounded-lg flex items-center justify-center text-brand-orange"><i class="ph ph-envelope text-xl"></i></div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-orange-50 rounded-lg flex items-center justify-center text-brand-orange flex-shrink-0"><i class="ph ph-envelope text-xl"></i></div>
                             <div>
                                 <p class="text-[8px] font-black text-brand-orange uppercase leading-none mb-1">For Support</p>
                                 <p class="text-[10px] font-bold text-gray-900 leading-none">buildfactoryx@gmail.com</p>
                             </div>
                         </div>
-                        <div class="reach-card">
-                            <div class="w-10 h-10 bg-orange-50 rounded-lg flex items-center justify-center text-brand-orange"><i class="ph ph-shopping-bag text-xl"></i></div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-orange-50 rounded-lg flex items-center justify-center text-brand-orange flex-shrink-0"><i class="ph ph-shopping-bag text-xl"></i></div>
                             <div>
                                 <p class="text-[8px] font-black text-brand-orange uppercase leading-none mb-1">For Sales</p>
                                 <p class="text-[10px] font-bold text-gray-900 leading-none">buildfactoryx@gmail.com</p>
                             </div>
                         </div>
-                        <div class="reach-card">
-                            <div class="w-10 h-10 bg-orange-50 rounded-lg flex items-center justify-center text-brand-orange"><i class="ph ph-phone text-xl"></i></div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-orange-50 rounded-lg flex items-center justify-center text-brand-orange flex-shrink-0"><i class="ph ph-phone text-xl"></i></div>
                             <div>
                                 <p class="text-[8px] font-black text-brand-orange uppercase leading-none mb-1">For Instant Replies</p>
                                 <p class="text-[10px] font-bold text-gray-900 leading-snug">+91 99444 08977<br>+91 93429 85269</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-orange-50 rounded-lg flex items-center justify-center text-brand-orange flex-shrink-0"><i class="ph ph-clock text-xl"></i></div>
+                            <div>
+                                <p class="text-[8px] font-black text-brand-orange uppercase leading-none mb-1">Office Timings</p>
+                                <p class="text-[10px] font-bold text-gray-900 leading-snug">9:00 AM to 7:00 PM<br><span class="text-red-500">Sunday Holiday</span></p>
                             </div>
                         </div>
                     </div>
@@ -958,6 +1105,23 @@
 
         function reveal() {
             document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+        }
+
+        // MOBILE MENU LOGIC
+        let mobileMenuOpen = false;
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            mobileMenuOpen = !mobileMenuOpen;
+            if(mobileMenuOpen) {
+                menu.classList.remove('translate-x-full');
+                icon.classList.remove('ph-list');
+                icon.classList.add('ph-x');
+            } else {
+                menu.classList.add('translate-x-full');
+                icon.classList.remove('ph-x');
+                icon.classList.add('ph-list');
+            }
         }
 
         // CART LOGIC
@@ -1139,6 +1303,8 @@
 
         // Page Control
         function showPage(pageId, anchor = null) {
+            if (mobileMenuOpen) toggleMobileMenu(); // Auto close mobile menu if open
+
             window.scrollTo(0,0);
             ['page-home', 'page-details-starter', 'page-about', 'page-configurator', 'page-cart', 'page-orders', 'page-terms', 'page-refund'].forEach(id => {
                 const el = document.getElementById(id);
@@ -1168,6 +1334,20 @@
         // Modal Helpers
         function openModal() { document.getElementById('configModal').classList.remove('hidden'); }
         function closeModal() { document.getElementById('configModal').classList.add('hidden'); }
+
+        // FAQ LOGIC
+        function toggleFaq(element) {
+            const content = element.querySelector('.faq-content');
+            const icon = element.querySelector('.faq-icon');
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                content.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
 
         // --- CONFIGURATOR LOGIC ---
         const configData = {
