@@ -370,54 +370,66 @@
     <!-- PAGE 2: DYNAMIC PREBUILT DETAILS -->
     <main id="page-details-dynamic" class="hidden min-h-screen page-transition">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <nav class="flex text-[10px] font-black text-white/60 uppercase tracking-[0.2em] mb-12">
+            <nav class="flex text-[10px] font-black text-white/60 uppercase tracking-[0.2em] mb-10">
                 <button onclick="showPage('home')" class="hover:text-white transition-colors">Home</button><span class="mx-3 text-white/40">/</span>
                 <button onclick="showPage('home', '#prebuilts')" class="hover:text-white transition-colors">Prebuild</button><span class="mx-3 text-white/40">/</span>
                 <span class="text-white drop-shadow-sm">Pc-Details</span>
             </nav>
 
-            <h1 class="font-display text-6xl font-black text-white mb-12 uppercase tracking-tighter drop-shadow-md">Prebuild</h1>
+            <h1 class="font-display text-5xl lg:text-6xl font-black text-white mb-10 uppercase tracking-tighter drop-shadow-md">Prebuild</h1>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
-                <!-- Specs Bento (Reorganized into a 2x2 grid) -->
-                <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div class="bento-card p-6 flex flex-col justify-center">
-                        <p class="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] mb-3">Processor</p>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-10">
+                <!-- COMPACT Specs Bento Grid (Top 2x2) -->
+                <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div class="bento-card p-4 sm:p-5 flex flex-col justify-center">
+                        <p class="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] mb-2">Processor</p>
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-xl bg-orange-50 flex flex-shrink-0 items-center justify-center text-brand-orange"><i class="ph-fill ph-cpu text-2xl"></i></div>
+                            <div class="w-10 h-10 rounded-xl bg-orange-50 flex flex-shrink-0 items-center justify-center text-brand-orange overflow-hidden border border-orange-100">
+                                <img id="det-grid-cpu-img" class="w-full h-full object-contain p-1 hidden bg-white">
+                                <i id="det-grid-cpu-icon" class="ph-fill ph-cpu text-xl"></i>
+                            </div>
                             <p id="det-cpu" class="text-[11px] font-bold text-gray-800 leading-tight uppercase">-</p>
                         </div>
                     </div>
-                    <div class="bento-card p-6 flex flex-col justify-center">
-                        <p class="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] mb-3">Motherboard</p>
+                    <div class="bento-card p-4 sm:p-5 flex flex-col justify-center">
+                        <p class="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] mb-2">Motherboard</p>
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-xl bg-orange-50 flex flex-shrink-0 items-center justify-center text-brand-orange"><i class="ph-fill ph-circuit-board text-2xl"></i></div>
+                            <div class="w-10 h-10 rounded-xl bg-orange-50 flex flex-shrink-0 items-center justify-center text-brand-orange overflow-hidden border border-orange-100">
+                                <img id="det-grid-mobo-img" class="w-full h-full object-contain p-1 hidden bg-white">
+                                <i id="det-grid-mobo-icon" class="ph-fill ph-circuit-board text-xl"></i>
+                            </div>
                             <p id="det-mobo" class="text-[10px] font-bold text-gray-800 leading-tight uppercase">-</p>
                         </div>
                     </div>
-                    <div class="bento-card p-6 flex flex-col justify-center">
-                        <p class="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] mb-3">GPU</p>
+                    <div class="bento-card p-4 sm:p-5 flex flex-col justify-center">
+                        <p class="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] mb-2">GPU</p>
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-xl bg-orange-50 flex flex-shrink-0 items-center justify-center text-brand-orange"><i class="ph-fill ph-video-camera text-2xl"></i></div>
+                            <div class="w-10 h-10 rounded-xl bg-orange-50 flex flex-shrink-0 items-center justify-center text-brand-orange overflow-hidden border border-orange-100">
+                                <img id="det-grid-gpu-img" class="w-full h-full object-contain p-1 hidden bg-white">
+                                <i id="det-grid-gpu-icon" class="ph-fill ph-video-camera text-xl"></i>
+                            </div>
                             <p id="det-gpu" class="text-[10px] font-bold text-gray-800 leading-tight uppercase">-</p>
                         </div>
                     </div>
-                    <div class="bento-card p-6 flex flex-col justify-center">
-                        <p class="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] mb-3">RAM</p>
+                    <div class="bento-card p-4 sm:p-5 flex flex-col justify-center">
+                        <p class="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] mb-2">RAM</p>
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-xl bg-orange-50 flex flex-shrink-0 items-center justify-center text-brand-orange"><i class="ph-fill ph-memory text-2xl"></i></div>
+                            <div class="w-10 h-10 rounded-xl bg-orange-50 flex flex-shrink-0 items-center justify-center text-brand-orange overflow-hidden border border-orange-100">
+                                <img id="det-grid-ram-img" class="w-full h-full object-contain p-1 hidden bg-white">
+                                <i id="det-grid-ram-icon" class="ph-fill ph-memory text-xl"></i>
+                            </div>
                             <p id="det-ram" class="text-[11px] font-bold text-gray-800 leading-tight uppercase">-</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Purchase Card with Dynamic Slideshow -->
-                <div class="lg:col-span-7 bg-white rounded-[3rem] p-8 md:p-12 text-gray-900 flex flex-col relative border border-gray-100 shadow-xl shadow-gray-900/10">
+                <div class="lg:col-span-7 bg-white rounded-[2.5rem] p-6 sm:p-8 text-gray-900 flex flex-col relative border border-gray-100 shadow-xl shadow-gray-900/10">
                     <div class="relative z-10 flex-grow flex flex-col">
-                        <div class="flex flex-col md:flex-row items-center gap-8 mb-6 bg-black/5 rounded-[2rem] p-4">
+                        <div class="flex flex-col md:flex-row items-center gap-6 mb-5 bg-black/5 rounded-[1.5rem] p-3">
                             
                             <!-- Dynamic Slideshow Container -->
-                            <div class="relative w-full md:w-1/2 h-[300px] rounded-2xl overflow-hidden group">
+                            <div class="relative w-full md:w-1/2 h-[240px] sm:h-[280px] rounded-xl overflow-hidden group bg-white shadow-inner border border-gray-100">
                                 <div id="dyn-slide-container" class="w-full h-full relative"></div>
                                 
                                 <!-- Slideshow Controls -->
@@ -426,31 +438,31 @@
                                     <button onclick="nextDynSlide(1)" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-brand-orange text-gray-900 hover:text-white w-8 h-8 rounded-full z-30 transition-all flex items-center justify-center shadow-md opacity-0 group-hover:opacity-100"><i class="ph-bold ph-caret-right"></i></button>
                                 </div>
                                 <!-- Slideshow Indicators -->
-                                <div id="dyn-slide-dots" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-30 hidden"></div>
+                                <div id="dyn-slide-dots" class="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-1.5 z-30 hidden"></div>
                             </div>
 
-                            <div class="w-full md:w-1/2 text-center md:text-left p-4">
-                                <span id="det-tag" class="bg-red-600 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest mb-3 inline-block shadow-lg shadow-red-600/30">TAG</span>
-                                <h2 class="text-4xl lg:text-5xl font-black uppercase tracking-tighter leading-none mb-2" id="det-name">NAME <br> <span class="text-brand-orange">RIG</span></h2>
+                            <div class="w-full md:w-1/2 text-center md:text-left p-2 sm:p-4">
+                                <span id="det-tag" class="bg-red-600 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-widest mb-2 inline-block shadow-md shadow-red-600/20">TAG</span>
+                                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tighter leading-none mb-2" id="det-name">NAME <br> <span class="text-brand-orange">RIG</span></h2>
                             </div>
                         </div>
                         
-                        <div class="bg-gray-50 border border-gray-100 rounded-[2rem] p-8 my-6 relative shadow-sm">
-                            <div class="flex items-center gap-3 mb-4">
-                                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm"><i class="ph-fill ph-shield-check text-brand-orange text-2xl"></i></div>
-                                <div><p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 leading-none">Free on-site</p><p class="text-xl font-black text-gray-900 leading-none uppercase">3 Months</p></div>
+                        <div class="bg-gray-50 border border-gray-100 rounded-[1.5rem] p-5 my-4 relative shadow-sm">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm"><i class="ph-fill ph-shield-check text-brand-orange text-xl"></i></div>
+                                <div><p class="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-0.5 leading-none">Free on-site</p><p class="text-lg font-black text-gray-900 leading-none uppercase">3 Months</p></div>
                             </div>
-                            <p class="text-[9px] text-gray-500 font-medium leading-relaxed mb-4">Additional 3-10 years of off-site hardware warranty applicable as per OEM terms.*</p>
-                            <div class="flex items-center gap-2 pt-4 border-t border-gray-200">
+                            <p class="text-[9px] text-gray-500 font-medium leading-relaxed mb-3">Additional 3-10 years of off-site hardware warranty applicable as per OEM terms.*</p>
+                            <div class="flex items-center gap-2 pt-3 border-t border-gray-200">
                                 <i class="ph ph-wrench text-brand-orange"></i><p class="text-[9px] font-black text-gray-900 uppercase tracking-widest">Lifetime Free Tech Support</p>
                             </div>
                         </div>
                         <div class="mt-auto">
-                            <p id="det-price" class="text-5xl font-black tracking-tighter mb-1">₹0</p>
-                            <p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-10">Inclusive of GST + Free Delivery</p>
-                            <div class="flex flex-col gap-4">
-                                <button id="det-cart-btn" class="w-full bg-brand-orange text-white py-6 rounded-2xl font-black text-xl flex items-center justify-center gap-4 hover:bg-black transition-all shadow-xl shadow-orange-500/20 group">
-                                    <i class="ph-fill ph-shopping-cart text-2xl"></i> ADD TO CART <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                            <p id="det-price" class="text-4xl sm:text-5xl font-black tracking-tighter mb-1">₹0</p>
+                            <p class="text-[9px] text-gray-500 font-bold uppercase tracking-widest mb-6">Inclusive of GST + Free Delivery</p>
+                            <div class="flex flex-col gap-3">
+                                <button id="det-cart-btn" class="w-full bg-brand-orange text-white py-4 sm:py-5 rounded-xl font-black text-lg flex items-center justify-center gap-3 hover:bg-black transition-all shadow-lg shadow-orange-500/20 group">
+                                    <i class="ph-fill ph-shopping-cart text-xl"></i> ADD TO CART <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition-transform"></i>
                                 </button>
                             </div>
                         </div>
@@ -458,35 +470,54 @@
                 </div>
             </div>
             
-            <div class="flex items-center gap-4 mb-10">
-                <h2 class="font-display text-4xl font-black text-white uppercase tracking-tighter drop-shadow-md">Tech specs</h2>
-                <span id="det-purpose" class="hidden sm:inline-block border border-white/20 bg-white/10 text-white/80 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest">PURPOSE</span>
+            <div class="flex items-center gap-4 mb-6">
+                <h2 class="font-display text-3xl font-black text-white uppercase tracking-tighter drop-shadow-md">Tech specs</h2>
+                <span id="det-purpose" class="hidden sm:inline-block border border-white/20 bg-white/10 text-white/80 backdrop-blur-md px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest">PURPOSE</span>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-32">
-                <div class="bento-card p-8 flex items-center gap-6">
-                    <div class="w-14 h-14 bg-gray-50 shadow-inner rounded-2xl flex items-center justify-center text-gray-500"><i class="ph-fill ph-circuit-board text-3xl"></i></div>
-                    <div><p class="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1 text-brand-orange">MOTHER BOARD</p><p id="det-mobo-full" class="text-xs font-bold text-gray-800 uppercase">-</p></div>
+            <!-- COMPACT BOTTOM SPECS GRID -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-20">
+                <div class="bento-card p-4 sm:p-5 flex items-center gap-4">
+                    <div class="w-12 h-12 bg-gray-50 shadow-sm rounded-xl border border-gray-100 flex items-center justify-center overflow-hidden flex-shrink-0">
+                        <img id="det-mobo-img" src="" class="w-full h-full object-contain p-1 hidden bg-white">
+                        <i id="det-mobo-icon" class="ph-fill ph-circuit-board text-2xl text-gray-400"></i>
+                    </div>
+                    <div><p class="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-0.5 text-brand-orange">MOTHERBOARD</p><p id="det-mobo-full" class="text-xs font-bold text-gray-800 uppercase leading-tight">-</p></div>
                 </div>
-                <div class="bento-card p-8 flex items-center gap-6">
-                    <div class="w-14 h-14 bg-gray-50 shadow-inner rounded-2xl flex items-center justify-center text-gray-500"><i class="ph-fill ph-memory text-3xl"></i></div>
-                    <div><p class="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1 text-brand-orange">RAM</p><p id="det-ram-full" class="text-xs font-bold text-gray-800 uppercase">-</p></div>
+                <div class="bento-card p-4 sm:p-5 flex items-center gap-4">
+                    <div class="w-12 h-12 bg-gray-50 shadow-sm rounded-xl border border-gray-100 flex items-center justify-center overflow-hidden flex-shrink-0">
+                        <img id="det-ram-img" src="" class="w-full h-full object-contain p-1 hidden bg-white">
+                        <i id="det-ram-icon" class="ph-fill ph-memory text-2xl text-gray-400"></i>
+                    </div>
+                    <div><p class="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-0.5 text-brand-orange">RAM</p><p id="det-ram-full" class="text-xs font-bold text-gray-800 uppercase leading-tight">-</p></div>
                 </div>
-                <div class="bento-card p-8 flex items-center gap-6">
-                    <div class="w-14 h-14 bg-gray-50 shadow-inner rounded-2xl flex items-center justify-center text-gray-500"><i class="ph-fill ph-lightning text-3xl"></i></div>
-                    <div><p class="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1 text-brand-orange">POWER SUPPLY</p><p id="det-psu-full" class="text-xs font-bold text-gray-800 uppercase">-</p></div>
+                <div class="bento-card p-4 sm:p-5 flex items-center gap-4">
+                    <div class="w-12 h-12 bg-gray-50 shadow-sm rounded-xl border border-gray-100 flex items-center justify-center overflow-hidden flex-shrink-0">
+                        <img id="det-psu-img" src="" class="w-full h-full object-contain p-1 hidden bg-white">
+                        <i id="det-psu-icon" class="ph-fill ph-lightning text-2xl text-gray-400"></i>
+                    </div>
+                    <div><p class="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-0.5 text-brand-orange">POWER SUPPLY</p><p id="det-psu-full" class="text-xs font-bold text-gray-800 uppercase leading-tight">-</p></div>
                 </div>
-                <div class="bento-card p-8 flex items-center gap-6">
-                    <div class="w-14 h-14 bg-gray-50 shadow-inner rounded-2xl flex items-center justify-center text-gray-500"><i class="ph-fill ph-hard-drive text-3xl"></i></div>
-                    <div><p class="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1 text-brand-orange">STORAGE</p><p id="det-storage-full" class="text-xs font-bold text-gray-800 uppercase">-</p></div>
+                <div class="bento-card p-4 sm:p-5 flex items-center gap-4">
+                    <div class="w-12 h-12 bg-gray-50 shadow-sm rounded-xl border border-gray-100 flex items-center justify-center overflow-hidden flex-shrink-0">
+                        <img id="det-storage-img" src="" class="w-full h-full object-contain p-1 hidden bg-white">
+                        <i id="det-storage-icon" class="ph-fill ph-hard-drive text-2xl text-gray-400"></i>
+                    </div>
+                    <div><p class="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-0.5 text-brand-orange">STORAGE</p><p id="det-storage-full" class="text-xs font-bold text-gray-800 uppercase leading-tight">-</p></div>
                 </div>
-                <div class="bento-card p-8 flex items-center gap-6">
-                    <div class="w-14 h-14 bg-gray-50 shadow-inner rounded-2xl flex items-center justify-center text-gray-500"><i class="ph-fill ph-video-camera text-3xl"></i></div>
-                    <div><p class="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1 text-brand-orange">GRAPHICS CARD</p><p id="det-gpu-full" class="text-xs font-bold text-gray-800 uppercase">-</p></div>
+                <div class="bento-card p-4 sm:p-5 flex items-center gap-4">
+                    <div class="w-12 h-12 bg-gray-50 shadow-sm rounded-xl border border-gray-100 flex items-center justify-center overflow-hidden flex-shrink-0">
+                        <img id="det-gpu-img" src="" class="w-full h-full object-contain p-1 hidden bg-white">
+                        <i id="det-gpu-icon" class="ph-fill ph-video-camera text-2xl text-gray-400"></i>
+                    </div>
+                    <div><p class="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-0.5 text-brand-orange">GRAPHICS CARD</p><p id="det-gpu-full" class="text-xs font-bold text-gray-800 uppercase leading-tight">-</p></div>
                 </div>
-                <div class="bento-card p-8 flex items-center gap-6">
-                    <div class="w-14 h-14 bg-gray-50 shadow-inner rounded-2xl flex items-center justify-center text-gray-500"><i class="ph-fill ph-desktop text-3xl"></i></div>
-                    <div><p class="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1 text-brand-orange">CASE</p><p id="det-case-full" class="text-xs font-bold text-gray-800 uppercase">-</p></div>
+                <div class="bento-card p-4 sm:p-5 flex items-center gap-4">
+                    <div class="w-12 h-12 bg-gray-50 shadow-sm rounded-xl border border-gray-100 flex items-center justify-center overflow-hidden flex-shrink-0">
+                        <img id="det-case-img" src="" class="w-full h-full object-contain p-1 hidden bg-white">
+                        <i id="det-case-icon" class="ph-fill ph-desktop text-2xl text-gray-400"></i>
+                    </div>
+                    <div><p class="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-0.5 text-brand-orange">CASE</p><p id="det-case-full" class="text-xs font-bold text-gray-800 uppercase leading-tight">-</p></div>
                 </div>
             </div>
         </div>
@@ -780,7 +811,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h1 class="font-display text-5xl lg:text-7xl font-black text-red-500 mb-2 uppercase tracking-tighter drop-shadow-md">Admin <span class="text-white">Portal</span></h1>
-                <p class="text-white/60 font-medium text-lg">Manage dynamic prebuilt rigs.</p>
+                <p class="text-white/60 font-medium text-lg">Manage dynamic prebuilt rigs and part images.</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -807,7 +838,7 @@
                             </div>
                         </div>
                         <div>
-                            <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 block">Image URLs (Comma Separated)</label>
+                            <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 block">Main Rig Image URLs (Comma Separated)</label>
                             <textarea id="admin-img" required rows="2" class="w-full bg-white/5 border border-white/10 rounded-xl p-3 text-white text-sm focus:border-brand-orange outline-none" placeholder="https://img1.png, https://img2.png"></textarea>
                         </div>
                         <div>
@@ -816,17 +847,53 @@
                         </div>
 
                         <div class="pt-4 border-t border-white/10">
-                            <h4 class="text-xs font-black text-brand-orange uppercase tracking-widest mb-3">Specifications</h4>
-                            <div class="space-y-3">
-                                <input type="text" id="spec-cpu" required class="w-full bg-white/5 border border-white/10 rounded-xl p-2.5 text-white text-xs" placeholder="CPU (e.g. Ryzen 5 5600GT)">
-                                <input type="text" id="spec-purpose" required class="w-full bg-white/5 border border-white/10 rounded-xl p-2.5 text-white text-xs" placeholder="Purpose (e.g. 1080p Gaming)">
-                                <input type="text" id="spec-gpu" required class="w-full bg-white/5 border border-white/10 rounded-xl p-2.5 text-white text-xs" placeholder="GPU (e.g. Radeon Graphics)">
-                                <input type="text" id="spec-ram" required class="w-full bg-white/5 border border-white/10 rounded-xl p-2.5 text-white text-xs" placeholder="RAM (e.g. 8GB DDR4 3200MHz)">
-                                <input type="text" id="spec-mobo" required class="w-full bg-white/5 border border-white/10 rounded-xl p-2.5 text-white text-xs" placeholder="Motherboard">
-                                <input type="text" id="spec-psu" required class="w-full bg-white/5 border border-white/10 rounded-xl p-2.5 text-white text-xs" placeholder="Power Supply">
-                                <input type="text" id="spec-storage" required class="w-full bg-white/5 border border-white/10 rounded-xl p-2.5 text-white text-xs" placeholder="Storage (e.g. 256GB SSD)">
-                                <input type="text" id="spec-cooler" required class="w-full bg-white/5 border border-white/10 rounded-xl p-2.5 text-white text-xs" placeholder="Cooler">
-                                <input type="text" id="spec-case" required class="w-full bg-white/5 border border-white/10 rounded-xl p-2.5 text-white text-xs" placeholder="Cabinet / Case">
+                            <h4 class="text-xs font-black text-brand-orange uppercase tracking-widest mb-3">Component Specifications (Name & Image)</h4>
+                            <div class="space-y-4 max-h-[400px] overflow-y-auto admin-scroll pr-2">
+                                
+                                <div class="bg-white/5 p-3 rounded-xl border border-white/10">
+                                    <label class="text-[9px] font-black text-brand-orange uppercase tracking-widest mb-2 block">Processor</label>
+                                    <input type="text" id="spec-cpu" required class="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-white text-xs mb-2" placeholder="Name (e.g. Ryzen 5 5600)">
+                                    <input type="text" id="spec-cpu-img" class="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-white text-xs" placeholder="Image URL (Optional)">
+                                </div>
+                                <div class="bg-white/5 p-3 rounded-xl border border-white/10">
+                                    <label class="text-[9px] font-black text-brand-orange uppercase tracking-widest mb-2 block">Motherboard</label>
+                                    <input type="text" id="spec-mobo" required class="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-white text-xs mb-2" placeholder="Name">
+                                    <input type="text" id="spec-mobo-img" class="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-white text-xs" placeholder="Image URL (Optional)">
+                                </div>
+                                <div class="bg-white/5 p-3 rounded-xl border border-white/10">
+                                    <label class="text-[9px] font-black text-brand-orange uppercase tracking-widest mb-2 block">Graphics Card (GPU)</label>
+                                    <input type="text" id="spec-gpu" required class="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-white text-xs mb-2" placeholder="Name">
+                                    <input type="text" id="spec-gpu-img" class="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-white text-xs" placeholder="Image URL (Optional)">
+                                </div>
+                                <div class="bg-white/5 p-3 rounded-xl border border-white/10">
+                                    <label class="text-[9px] font-black text-brand-orange uppercase tracking-widest mb-2 block">RAM</label>
+                                    <input type="text" id="spec-ram" required class="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-white text-xs mb-2" placeholder="Name">
+                                    <input type="text" id="spec-ram-img" class="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-white text-xs" placeholder="Image URL (Optional)">
+                                </div>
+                                <div class="bg-white/5 p-3 rounded-xl border border-white/10">
+                                    <label class="text-[9px] font-black text-brand-orange uppercase tracking-widest mb-2 block">Power Supply (PSU)</label>
+                                    <input type="text" id="spec-psu" required class="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-white text-xs mb-2" placeholder="Name">
+                                    <input type="text" id="spec-psu-img" class="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-white text-xs" placeholder="Image URL (Optional)">
+                                </div>
+                                <div class="bg-white/5 p-3 rounded-xl border border-white/10">
+                                    <label class="text-[9px] font-black text-brand-orange uppercase tracking-widest mb-2 block">Storage (SSD/HDD)</label>
+                                    <input type="text" id="spec-storage" required class="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-white text-xs mb-2" placeholder="Name">
+                                    <input type="text" id="spec-storage-img" class="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-white text-xs" placeholder="Image URL (Optional)">
+                                </div>
+                                <div class="bg-white/5 p-3 rounded-xl border border-white/10">
+                                    <label class="text-[9px] font-black text-brand-orange uppercase tracking-widest mb-2 block">Case / Cabinet</label>
+                                    <input type="text" id="spec-case" required class="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-white text-xs mb-2" placeholder="Name">
+                                    <input type="text" id="spec-case-img" class="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-white text-xs" placeholder="Image URL (Optional)">
+                                </div>
+                                <div class="bg-white/5 p-3 rounded-xl border border-white/10">
+                                    <label class="text-[9px] font-black text-brand-orange uppercase tracking-widest mb-2 block">Cooler (Optional text)</label>
+                                    <input type="text" id="spec-cooler" class="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-white text-xs" placeholder="Name">
+                                </div>
+                                <div class="bg-white/5 p-3 rounded-xl border border-white/10">
+                                    <label class="text-[9px] font-black text-brand-orange uppercase tracking-widest mb-2 block">General Purpose</label>
+                                    <input type="text" id="spec-purpose" required class="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-white text-xs" placeholder="e.g. 1080p Gaming">
+                                </div>
+
                             </div>
                         </div>
 
@@ -1136,7 +1203,7 @@
         const provider = new GoogleAuthProvider();
 
         // ONLY Admin Emails Can Access the Portal
-        const ADMIN_EMAILS = ["adminbfx@gmail.com"];
+        const ADMIN_EMAILS = ["adminbfx@gmail.com", "prithishrajt@gmail.com"];
         window.isAdmin = false; // Globally attach access flag
 
         window.showToast = (message, isError = false) => {
@@ -1225,7 +1292,17 @@
                 desc: 'The ultimate entry-level powerhouse. Engineered for stability and reliability.',
                 price: 44680,
                 image: 'https://i.ibb.co/KpmtJ5Mw/Screenshot-2026-04-23-230029.png',
-                specs: { cpu: 'AMD Ryzen 5 5600GT', purpose: 'LIGHT WEIGHT GAMING & DAILY USAGE', gpu: 'Radeon Graphics', ram: '8GB DDR4 3200MHz', mobo: 'ASUS Prime B550M-K', psu: 'MSI MAG A550BN 550W', storage: 'EVM 256GB SATA SSD', cooler: 'AMD WRAITH STEALTH', case: 'Ant Esports Elite 1100' }
+                specs: { 
+                    cpu: { name: 'AMD Ryzen 5 5600GT', img: '' }, 
+                    purpose: { name: 'LIGHT WEIGHT GAMING & DAILY USAGE' }, 
+                    gpu: { name: 'Radeon Graphics', img: '' }, 
+                    ram: { name: '8GB DDR4 3200MHz', img: '' }, 
+                    mobo: { name: 'ASUS Prime B550M-K', img: '' }, 
+                    psu: { name: 'MSI MAG A550BN 550W', img: '' }, 
+                    storage: { name: 'EVM 256GB SATA SSD', img: '' }, 
+                    cooler: { name: 'AMD WRAITH STEALTH' }, 
+                    case: { name: 'Ant Esports Elite 1100', img: '' } 
+                }
             },
             {
                 id: 'build-pro',
@@ -1234,7 +1311,17 @@
                 desc: 'Specially engineered to kill the PS5 & Xbox. Console-crushing performance wrapped in the Crystal Z2 Fishtank.',
                 price: 89843,
                 image: 'https://i.ibb.co/0yS6VPRY/Chat-GPT-Image-Apr-24-2026-11-33-25-PM.png,https://i.ibb.co/rK8sM9CB/Chat-GPT-Image-Apr-24-2026-11-41-53-PM.png',
-                specs: { cpu: 'AMD Ryzen 5 5600', purpose: 'CONSOLE KILLER (PS5 & XBOX) & HIGH-END GAMING', gpu: 'ASUS Dual RX 9060 XT 8GB', ram: '16GB ADATA (8x2) 3200MHz', mobo: 'GIGABYTE B550M DS3H AC R2', psu: 'MSI MAG A650BN 650W 80+ Bronze', storage: 'Consistent 512GB NVMe PCIe M.2', cooler: 'AMD WRAITH STEALTH', case: 'Ant Esports Crystal Z2 Mid-Tower' }
+                specs: { 
+                    cpu: { name: 'AMD Ryzen 5 5600', img: '' }, 
+                    purpose: { name: 'CONSOLE KILLER (PS5 & XBOX) & HIGH-END GAMING' }, 
+                    gpu: { name: 'ASUS Dual RX 9060 XT 8GB', img: '' }, 
+                    ram: { name: '16GB ADATA (8x2) 3200MHz', img: '' }, 
+                    mobo: { name: 'GIGABYTE B550M DS3H AC R2', img: '' }, 
+                    psu: { name: 'MSI MAG A650BN 650W 80+ Bronze', img: '' }, 
+                    storage: { name: 'Consistent 512GB NVMe PCIe M.2', img: '' }, 
+                    cooler: { name: 'AMD WRAITH STEALTH' }, 
+                    case: { name: 'Ant Esports Crystal Z2 Mid-Tower', img: '' } 
+                }
             }
         ];
 
@@ -1247,6 +1334,10 @@
             }
             return JSON.parse(builds);
         }
+
+        // Helpers to safely read legacy string specs or new object specs
+        const getSpecName = (spec) => (typeof spec === 'object' && spec !== null) ? spec.name : (spec || '-');
+        const getSpecImg = (spec) => (typeof spec === 'object' && spec !== null) ? (spec.img || '') : '';
 
         function renderBuildGrid() {
             const builds = getBuilds();
@@ -1288,6 +1379,30 @@
         let dynSlideImages = [];
         let dynSlideIndex = 0;
 
+        function setSpecUI(prefix, specData, iconId) {
+            const nameEl = document.getElementById(prefix + '-full');
+            const gridNameEl = document.getElementById(prefix); // For top 2x2 grid
+            const imgEl = document.getElementById(prefix + '-img');
+            const iconEl = document.getElementById(iconId);
+
+            const name = getSpecName(specData);
+            const imgUrl = getSpecImg(specData);
+
+            if(nameEl) nameEl.innerHTML = name;
+            if(gridNameEl) gridNameEl.innerHTML = name.split(' ').slice(0,2).join(' ') + '<br>' + name.split(' ').slice(2).join(' ');
+
+            if(imgEl && iconEl) {
+                if(imgUrl && imgUrl.trim() !== '') {
+                    imgEl.src = imgUrl;
+                    imgEl.classList.remove('hidden');
+                    iconEl.classList.add('hidden');
+                } else {
+                    imgEl.classList.add('hidden');
+                    iconEl.classList.remove('hidden');
+                }
+            }
+        }
+
         function viewDynamicBuild(id) {
             const builds = getBuilds();
             // Force strict string matching just in case
@@ -1298,22 +1413,23 @@
             document.getElementById('det-tag').innerText = build.tag;
             document.getElementById('det-price').innerText = '₹' + parseInt(build.price).toLocaleString('en-IN');
             
-            // Handle safely missing specifications
-            const getSpec = (key) => (build.specs && build.specs[key]) ? build.specs[key] : 'N/A';
+            // Map Spec Names & Spec Component Images dynamically to the UI!
+            const s = build.specs || {};
+            setSpecUI('det-cpu', s.cpu, 'det-grid-cpu-icon');
+            setSpecUI('det-mobo', s.mobo, 'det-grid-mobo-icon');
+            setSpecUI('det-gpu', s.gpu, 'det-grid-gpu-icon');
+            setSpecUI('det-ram', s.ram, 'det-grid-ram-icon');
 
-            document.getElementById('det-cpu').innerHTML = getSpec('cpu').replace(' ', '<br>');
-            document.getElementById('det-mobo').innerHTML = getSpec('mobo').split(' ').slice(0,2).join(' ') + '<br>' + getSpec('mobo').split(' ').slice(2).join(' ');
-            document.getElementById('det-gpu').innerHTML = getSpec('gpu').split(' ').slice(0,2).join(' ') + '<br>' + getSpec('gpu').split(' ').slice(2).join(' ');
-            document.getElementById('det-ram').innerHTML = getSpec('ram').split(' ').slice(0,2).join(' ') + '<br>' + getSpec('ram').split(' ').slice(2).join(' ');
-
-            // Full Specs
-            document.getElementById('det-purpose').innerText = getSpec('purpose');
-            document.getElementById('det-mobo-full').innerText = getSpec('mobo');
-            document.getElementById('det-ram-full').innerText = getSpec('ram');
-            document.getElementById('det-psu-full').innerText = getSpec('psu');
-            document.getElementById('det-storage-full').innerText = getSpec('storage');
-            document.getElementById('det-gpu-full').innerText = getSpec('gpu');
-            document.getElementById('det-case-full').innerText = getSpec('case');
+            // Map Bottom Grid Specs & Images
+            document.getElementById('det-purpose').innerText = getSpecName(s.purpose);
+            
+            // Ensure bottom icons match image config
+            setSpecUI('det-mobo', s.mobo, 'det-mobo-icon');
+            setSpecUI('det-ram', s.ram, 'det-ram-icon');
+            setSpecUI('det-psu', s.psu, 'det-psu-icon');
+            setSpecUI('det-storage', s.storage, 'det-storage-icon');
+            setSpecUI('det-gpu', s.gpu, 'det-gpu-icon');
+            setSpecUI('det-case', s.case, 'det-case-icon');
 
             // Setup Dynamic Slideshow
             dynSlideImages = build.image.split(',').map(url => url.trim());
@@ -1411,15 +1527,30 @@
             document.getElementById('admin-img').value = build.image || '';
 
             if(build.specs) {
-                document.getElementById('spec-cpu').value = build.specs.cpu || '';
-                document.getElementById('spec-purpose').value = build.specs.purpose || '';
-                document.getElementById('spec-gpu').value = build.specs.gpu || '';
-                document.getElementById('spec-ram').value = build.specs.ram || '';
-                document.getElementById('spec-mobo').value = build.specs.mobo || '';
-                document.getElementById('spec-psu').value = build.specs.psu || '';
-                document.getElementById('spec-storage').value = build.specs.storage || '';
-                document.getElementById('spec-cooler').value = build.specs.cooler || '';
-                document.getElementById('spec-case').value = build.specs.case || '';
+                document.getElementById('spec-cpu').value = getSpecName(build.specs.cpu);
+                document.getElementById('spec-cpu-img').value = getSpecImg(build.specs.cpu);
+                
+                document.getElementById('spec-purpose').value = getSpecName(build.specs.purpose);
+                
+                document.getElementById('spec-gpu').value = getSpecName(build.specs.gpu);
+                document.getElementById('spec-gpu-img').value = getSpecImg(build.specs.gpu);
+                
+                document.getElementById('spec-ram').value = getSpecName(build.specs.ram);
+                document.getElementById('spec-ram-img').value = getSpecImg(build.specs.ram);
+                
+                document.getElementById('spec-mobo').value = getSpecName(build.specs.mobo);
+                document.getElementById('spec-mobo-img').value = getSpecImg(build.specs.mobo);
+                
+                document.getElementById('spec-psu').value = getSpecName(build.specs.psu);
+                document.getElementById('spec-psu-img').value = getSpecImg(build.specs.psu);
+                
+                document.getElementById('spec-storage').value = getSpecName(build.specs.storage);
+                document.getElementById('spec-storage-img').value = getSpecImg(build.specs.storage);
+                
+                document.getElementById('spec-cooler').value = getSpecName(build.specs.cooler);
+                
+                document.getElementById('spec-case').value = getSpecName(build.specs.case);
+                document.getElementById('spec-case-img').value = getSpecImg(build.specs.case);
             }
 
             document.getElementById('admin-form-title').innerHTML = '<i class="ph-bold ph-pencil-simple text-blue-400"></i> Edit Build';
@@ -1442,15 +1573,15 @@
                 desc: document.getElementById('admin-desc').value,
                 image: document.getElementById('admin-img').value,
                 specs: {
-                    cpu: document.getElementById('spec-cpu').value,
-                    purpose: document.getElementById('spec-purpose').value,
-                    gpu: document.getElementById('spec-gpu').value,
-                    ram: document.getElementById('spec-ram').value,
-                    mobo: document.getElementById('spec-mobo').value,
-                    psu: document.getElementById('spec-psu').value,
-                    storage: document.getElementById('spec-storage').value,
-                    cooler: document.getElementById('spec-cooler').value,
-                    case: document.getElementById('spec-case').value
+                    cpu: { name: document.getElementById('spec-cpu').value, img: document.getElementById('spec-cpu-img').value },
+                    purpose: { name: document.getElementById('spec-purpose').value },
+                    gpu: { name: document.getElementById('spec-gpu').value, img: document.getElementById('spec-gpu-img').value },
+                    ram: { name: document.getElementById('spec-ram').value, img: document.getElementById('spec-ram-img').value },
+                    mobo: { name: document.getElementById('spec-mobo').value, img: document.getElementById('spec-mobo-img').value },
+                    psu: { name: document.getElementById('spec-psu').value, img: document.getElementById('spec-psu-img').value },
+                    storage: { name: document.getElementById('spec-storage').value, img: document.getElementById('spec-storage-img').value },
+                    cooler: { name: document.getElementById('spec-cooler').value },
+                    case: { name: document.getElementById('spec-case').value, img: document.getElementById('spec-case-img').value }
                 }
             };
 
